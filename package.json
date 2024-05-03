@@ -1,0 +1,16 @@
+{
+  "name": "DigicatChatDApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jhinnbay/DigicatChatDApp.git",
+  "author": "rogeriesmontsia <rogerarques@iesmontsia.org>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/client",
+    "packages/foundry"
+  ],
+  "scripts": {
+    "dev": "yarn workspace client dev"
+  }
+}
