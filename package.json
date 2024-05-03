@@ -11,6 +11,8 @@
     "packages/foundry"
   ],
   "scripts": {
-    "dev": "yarn workspace client dev"
+    "dev": "yarn workspace client dev",
+    "build": "yarn workspace foundry build",
+    "anvil": "yarn workspace foundry anvil"
   }
 }

@@ -12,3 +12,13 @@ yarn install
 ```
 yarn dev
 ```
+
+Compiling contracts:
+```
+yarn build
+```
+
+Run a local anvil chain:
+```
+yarn anvil
+```

@@ -1,0 +1,14 @@
+{
+  "name": "foundry",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cross-env": "5.0.5",
+    "client": "0.1.0"
+  },
+  "scripts": {
+    "build": "forge build",
+    "anvil": "anvil"
+  }
+}
