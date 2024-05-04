@@ -2,6 +2,8 @@ import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 export default function Header() {
     return (
-        <ConnectButton />
+        <div className="flex justify-end m-2">
+            <ConnectButton />
+        </div>
     );
 }

@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { getCsrfToken } from "next-auth/react";
 import { SiweMessage } from "siwe";
+import { cookies } from "next/headers";
 
 const handler = NextAuth({
     providers: [
@@ -21,13 +22,14 @@ const handler = NextAuth({
             },
             authorize: async (credentials) => {
                 try {
+                    const csrf = cookies().get('next-auth.csrf-token')?.value.split('|')[0]
                     const siwe = new SiweMessage(JSON.parse(credentials?.message || "{}"));
                     const nextAuthUrl = new URL(process.env.NEXTAUTH_URL);
 
                     const result = await siwe.verify({
                         signature: credentials?.signature || "",
                         domain: nextAuthUrl.host,
-                        nonce: await getCsrfToken(),
+                        nonce: csrf,
                     });
 
                     if (result.success) {
@@ -37,6 +39,7 @@ const handler = NextAuth({
                     }
                     return null;
                 } catch (e) {
+                    console.error("Error during authorization:", e);
                     return null;
                 }
             },
