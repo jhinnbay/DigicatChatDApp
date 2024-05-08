@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
 
 export const config = getDefaultConfig({
     appName: 'My RainbowKit App',
-    projectId: '46628dba1c5e4a4771f8dd3816df4d92',
+    projectId: process.env.PROJECT_ID,
     chains: [sepolia, polygon, optimism, arbitrum, base],
     ssr: true, // If your dApp uses server side rendering (SSR)
 });
