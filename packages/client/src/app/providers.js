@@ -16,6 +16,7 @@ import {
     QueryClientProvider,
     QueryClient,
 } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 
 export const config = getDefaultConfig({
     appName: 'My RainbowKit App',
@@ -28,11 +29,18 @@ const queryClient = new QueryClient();
 
 export function Providers({ children }) {
 
-    return (
-        <WagmiProvider config={config} >
+    const [ready, setReady] = useState(false);
+    useEffect(() => {
+        setReady(true);
+    }, []);
+
+    return ready ? (
+        <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
-                <RainbowKitProvider>{children}</RainbowKitProvider>
+                <RainbowKitProvider>
+                    {children}
+                </RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>
-    );
+    ) : null;
 }
