@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import { React, useEffect, useState } from "react";
 import {
     getDefaultConfig,
     RainbowKitProvider,
@@ -24,13 +24,19 @@ export const config = getDefaultConfig({
     appName: 'My RainbowKit App',
     projectId: '46628dba1c5e4a4771f8dd3816df4d92',
     chains: [mainnet, sepolia, polygon, optimism, arbitrum, base],
-    ssr: true, // If your dApp uses server side rendering (SSR)
+    ssr: true,
 });
 
 const queryClient = new QueryClient();
 
 export function Providers({ children }) {
-    return (
+
+    const [ready, setReady] = useState(false);
+    useEffect(() => {
+        setReady(true);
+    }, []);
+
+    return ready ? (
         <WagmiProvider config={config} >
             <SessionProvider>
                 <QueryClientProvider client={queryClient}>
@@ -40,5 +46,5 @@ export function Providers({ children }) {
                 </QueryClientProvider>
             </SessionProvider>
         </WagmiProvider>
-    );
+    ) : null;
 }
